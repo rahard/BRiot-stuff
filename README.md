@@ -1,2 +1,4 @@
 # BRiot-stuff
-This is a collection of my IoT stuff
+This is a collection of my IoT stuff.
+Mainly for teaching and fun.
+@rahard
