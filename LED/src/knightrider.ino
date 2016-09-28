@@ -8,9 +8,11 @@ Budi Rahardjo (@rahard)
 */
 
 // pin configuration for DycodeX ESPectro board
-int led[] = {15, 2, 0, 4, 5, 3};
+// int led[] = {15, 2, 0, 4, 5, 3};
+// pin configuration for Arduino UNU board
+int led[] = {13, 12, 11, 10, 9, 8};
 int NUMLED = 6; // number of LEDS
-int WAITFOR = 100;
+int WAITFOR = 10;
 int i;
 int LEDON=0;
 int direction=1;
