@@ -12,6 +12,8 @@ Budi Rahardjo (@rahard)
 */
 
 // pin definition of ESPectro board
+// I am connecting this to ProcodeCG LED board
+// thus, this pin configuration
 uint8_t BRD1 = 15;
 uint8_t BRD2 = 2;
 uint8_t BRD3 = 0;
@@ -19,7 +21,7 @@ uint8_t BRD4 = 4;
 uint8_t BRD5 = 5;
 uint8_t BRD6 = 3;
 
-int TUNGGU = 100;
+int TUNGGU = 500;
 
 
 // the setup function runs once when you press reset or power the board
