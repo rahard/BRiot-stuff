@@ -15,7 +15,7 @@ It's just for compiling.
 ** video: https://www.youtube.com/watch?v=mcaNzt9-HAI
 ** for Arduino: https://www.youtube.com/watch?v=H4V8DN9CDO8
 * ledmeter.ino: using LED as a meter (sort of), graphic equalizer?
-== video: https://www.youtube.com/watch?v=0ADAIgwpQ5o
+** video: https://www.youtube.com/watch?v=0ADAIgwpQ5o
 * rotate.ino: rotate (left/right) the content of LED 
 * turnoff.ino: just to turn off LEDs
 

@@ -11,7 +11,8 @@ Budi Rahardjo (@rahard)
 
 // pin configuration for Arduino UNU board + ProcodeCG LED
 int led[] = {7, 6, 5, 4, 3, 2};
-int key[] = {11, 10, 9, 8};
+//int key[] = {11, 10, 9, 8};
+int key[] = {13, 12, 11, 10};
 int but[] = {0, 0, 0, 0, 0, 0};
 int NUMLED=6;
 int NUMKEY=4;
