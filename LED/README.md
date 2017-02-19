@@ -33,3 +33,6 @@ To use bluino, check the device first
    platformio device list
 
    platformio run -t upload --upload-port /dev/cu.Bluino-ONE20-DevB
+
+NodeMCU
+   platformio run -t upload --upload-port /dev/cu.wchusbserial1410p
