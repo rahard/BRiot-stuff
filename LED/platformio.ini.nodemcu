@@ -1,0 +1,5 @@
+[env:esp12e]
+platform = espressif8266
+framework = arduino
+board = esp12e
+upload_speed = 921600
