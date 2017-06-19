@@ -1,0 +1,40 @@
+{
+    "name": "ESPectro", 
+    "repository": {
+        "url": "https://github.com/andriyadi/EspX.git", 
+        "type": "git"
+    }, 
+    "platforms": [
+        "espressif8266"
+    ], 
+    "frameworks": [
+        "arduino"
+    ], 
+    "version": "0.7.5", 
+    "dependencies": [
+        {
+            "platforms": "espressif8266", 
+            "frameworks": "arduino", 
+            "name": "NeoPixelBus", 
+            "authors": "Michael Miller"
+        }
+    ], 
+    "authors": [
+        {
+            "url": "http://www.dycodex.com", 
+            "maintainer": false, 
+            "email": null, 
+            "name": "Andri Yadi"
+        }
+    ], 
+    "keywords": [
+        "indonesia", 
+        "esp8266", 
+        "iot", 
+        "dycodex", 
+        "espectro", 
+        "devboard"
+    ], 
+    "id": 369, 
+    "description": "ESP8266 extended library, especially for ESPectro IoT development board by DycodeX"
+}

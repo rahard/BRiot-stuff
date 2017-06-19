@@ -12,7 +12,12 @@ as scratchpads (for testing ideas).
 The MQTT directory is for MQTT with IoT.
 I use DycodeX Espectro dev board (which is EPS8266-based).
 
+sensors: directory for sensors related stuff
+tested with NodeMCU
+
+
 Notes:
+=-=-=
 = platformio
   to use platformio with bluetooth devices, eg. Bluino-One,
   use the following command (assuming you have /dev/cu.Bulino-ONE20-DevB

@@ -22,8 +22,9 @@ platform = espressif8266
 framework = arduino
 board = esp12e
 upload_speed = 921600
+lib_install = 369
 
 [platformio]
 #src_dir = examples
+#lib_install = 64,346,547
 #lib_dir = /Users/Budi/Documents/Arduino/libraries/EspX
-lib_install = 64,346,547

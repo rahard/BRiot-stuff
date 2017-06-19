@@ -2,7 +2,7 @@
 Knight Rider LED
 
 Public Domain
-September 2016
+September 2016,2017
 Budi Rahardjo (@rahard)
 
 */
@@ -10,7 +10,9 @@ Budi Rahardjo (@rahard)
 // pin configuration for DycodeX ESPectro board
 // int led[] = {15, 2, 0, 4, 5, 3};
 // pin configuration for Arduino UNU board
-int led[] = {13, 12, 11, 10, 9, 8};
+// int led[] = {13, 12, 11, 10, 9, 8};
+// pin config for NodeMCU
+int led[] = {14, 12, 13, 15, 3, 1};
 int NUMLED = 6; // number of LEDS
 int WAITFOR = 10;
 int i;
