@@ -27,7 +27,7 @@ platformio run -t upload --upload-port /dev/cu.Bluino-ONE20-DevB
 
 =
 
-Enjoy
+Enjoy ...
 
 Budi Rahardjo
 
