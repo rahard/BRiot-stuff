@@ -7,8 +7,8 @@
 ESPectro board(ESPectro_V3);
 
 // Update these with values suitable for your network.
-const char* ssid = "sniffer";
-const char* password = "sniffer";
+const char* ssid = "ACCESSPOINT";
+const char* password = "secret";
 
 //const char* mqtt_server = "broker.mqtt-dashboard.com";
 //const char* mqtt_server = "broker.hivemq.com";

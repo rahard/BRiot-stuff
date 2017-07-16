@@ -2,13 +2,10 @@
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 
-// these to turn off Neopixels in ESPv3
-#include <ESPectro.h>
-ESPectro board(ESPectro_V3);
 
 // Update these with values suitable for your network.
 const char* ssid = "sniffer";
-const char* password = "sniffer";
+const char* password = "terbatas";
 
 //const char* mqtt_server = "broker.mqtt-dashboard.com";
 //const char* mqtt_server = "broker.hivemq.com";
@@ -19,6 +16,16 @@ PubSubClient client(espClient);
 long lastMsg = 0;
 char msg[50];
 int value = 0;
+int led[] = {14, 12, 13, 15};
+int i;
+int NUMLED=4;
+
+void nyala() {
+   for (i=0; i<NUMLED; i++) { digitalWrite(led[i], HIGH); }
+}
+void mati() {
+   for (i=0; i<NUMLED; i++) { digitalWrite(led[i], LOW); }
+}
 
 void setup_wifi() {
 
@@ -54,13 +61,11 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
   // Switch on the LED if an 1 was received as first character
   if ((char)payload[0] == '0') {
-    digitalWrite(BUILTIN_LED, LOW);   // Turn LED on (Note LOW is voltage level
-    board.turnOffAllNeopixel();
-    // but actually the LED is on; this is because
-    // it is acive low on the ESP-01)
+    // digitalWrite(BUILTIN_LED, LOW);
+    mati();
   } else {
-    digitalWrite(BUILTIN_LED, HIGH);// Turn LED off by making the voltage HIGH
-    board.turnOnNeopixel(HtmlColor(0x00ff00));
+    // digitalWrite(BUILTIN_LED, HIGH);
+    nyala();
   }
 
 }
@@ -88,8 +93,9 @@ void reconnect() {
 }
 
 void setup() {
-  board.turnOffAllNeopixel();
-  pinMode(BUILTIN_LED, OUTPUT);     // Initialize the BUILTIN_LED pin as an output
+  // pinMode(BUILTIN_LED, OUTPUT);     // Initialize the BUILTIN_LED pin as an output
+  for (i=0; i<NUMLED; i++) { pinMode(led[i], OUTPUT); }
+
   Serial.begin(9600);
   setup_wifi();
   client.setServer(mqtt_server, 1883);
