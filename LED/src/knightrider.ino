@@ -8,15 +8,15 @@ Budi Rahardjo (@rahard)
 */
 
 // pin configuration for DycodeX ESPectro board
-// int led[] = {15, 2, 0, 4, 5, 3};
+int led[] = {15, 2, 0, 4, 5, 3};
 // pin configuration for Arduino UNU board
 // int led[] = {13, 12, 11, 10, 9, 8};
 // pin config for NodeMCU
 // int led[] = {14, 12, 13, 15, 3, 1};
 // pin config for Wemos D1 mini
 // int led[] = {2, 0, 4, 5, 3, 1};
-int led[] = {15, 13, 12, 14, 16};
-int NUMLED = 5; // number of LEDS
+//int led[] = {15, 13, 12, 14, 16};
+int NUMLED = 6; // number of LEDS
 int WAITFOR = 100;
 int i;
 int LEDON=0;
