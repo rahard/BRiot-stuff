@@ -6,24 +6,23 @@
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
 // Replace with your network credentials
-#define WIFISSID "sniffer"
-#define WIFIPASS "sniffer"
+#define WIFISSID "brriset"
+#define WIFIPASS "password"
 
 #include "DHT.h"
-#define DHTPIN 14 /* sensor is connected to pin 14 of NodeMCU */
-#define DHTTYPE DHT11   // type of sensor we're using
+#define DHTPIN 2 /* wemos DHT11 shield */
+// #define DHTTYPE DHT11 
+#define DHTTYPE DHT22 
 
 
 // do not touch below
 DHT dht(DHTPIN, DHTTYPE);
 unsigned long startTime = millis();
 
-//const char* host="192.168.4.29";
-//const int port=8
-const char* host="45.126.133.174";
+const char* host="localhost";
 const int port=80;
 
-const int watchdog = 5000; // delay before pushing data
+const int watchdog = 20000; // delay before pushing data
 unsigned long previousMillis = millis();
 
 void connectWifi() {
@@ -82,8 +81,8 @@ void loop(void){
          return;
       }
 
-      String url="/weatherstation/updateweatherstation.php?";
-      url += "ID=IBANDUNG7&password=plg8n7wj";
+      String url="/weather/poller.php?";
+      url += "ID=BRPAUME1";
       url += "&tempf=";
       url += String(f);
       url += "&humidity=";

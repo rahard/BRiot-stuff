@@ -1,0 +1,7 @@
+[platformio]
+env_default = galileogen2
+
+[env:galileogen2]
+platform = atmelavr
+framework = arduino
+board = galileogen2

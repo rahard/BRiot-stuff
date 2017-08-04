@@ -7,12 +7,13 @@
 ESPectro board(ESPectro_V3);
 
 // Update these with values suitable for your network.
-const char* ssid = "sniffer";
-const char* password = "sniffer";
+const char* ssid = "LABDASAR-03";
+const char* password = "labdasarsajah";
 
 //const char* mqtt_server = "broker.mqtt-dashboard.com";
 //const char* mqtt_server = "broker.hivemq.com";
-const char* mqtt_server = "192.168.43.67";
+//const char* mqtt_server = "192.168.43.67";
+const char* mqtt_server = "10.8.2.126";
 
 WiFiClient espClient;
 PubSubClient client(espClient);

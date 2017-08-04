@@ -3,7 +3,7 @@
 
 #include "DHT.h"
 
-#define DHTPIN 14     // what digital pin we're connected to
+#define DHTPIN 2     // what digital pin we're connected to
 
 // Uncomment whatever type you're using!
 #define DHTTYPE DHT11   // DHT 11
