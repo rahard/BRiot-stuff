@@ -6,8 +6,8 @@
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
 // Replace with your network credentials
-#define WIFISSID "sniffer"
-#define WIFIPASS "sniffer"
+#define WIFISSID "AP"
+#define WIFIPASS "secret"
 
 #include "DHT.h"
 #define DHTPIN 14 /* sensor is connected to pin 14 of NodeMCU */

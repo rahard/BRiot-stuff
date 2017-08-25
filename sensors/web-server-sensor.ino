@@ -2,16 +2,23 @@
 @rahard
 */
 
+#define ESPECTRO
+
+#ifdef ESPECTRO
+#include <ESPectro.h>
+ESPectro board(ESPectro_V3);
+#endif
+
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
 // Replace with your network credentials
-#define WIFISSID "sniffer"
-#define WIFIPASS "sniffer"
+#define WIFISSID "AP"
+#define WIFIPASS "secret"
 
 #include "DHT.h"
-#define DHTPIN 14 /* sensor is connected to pin 14 of NodeMCU */
-#define DHTTYPE DHT11   // type of sensor we're using
+#define DHTPIN 2 /* sensor is connected to pin 14 of NodeMCU */
+#define DHTTYPE DHT22   // type of sensor we're using
 
 
 // do not touch below
@@ -48,6 +55,9 @@ void connectWifi() {
 }
 
 void setup(void){  
+#ifdef ESPECTRO
+   board.turnOffAllNeopixel();
+#endif
   Serial.begin(9600);
   dht.begin(); /* start sensor */
   delay(1000);
@@ -56,8 +66,8 @@ void setup(void){
 
 
   server.on("/", [](){
-    webPage="<H1>LED Status</H1>";
-    webPage+="okay";
+    webPage="<H1>Weather Sensor Server</H1>";
+    webPage+="Ready";
     server.send(200, "text/html", webPage);
     ESP.getFreeHeap();
   });

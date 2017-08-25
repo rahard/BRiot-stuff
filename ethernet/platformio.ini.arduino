@@ -26,4 +26,4 @@ upload_speed = 115200
 [platformio]
 #src_dir = examples
 #lib_dir = /Users/Budi/Documents/Arduino/libraries/EspX
-lib_install = 64,346,547
+#lib_install = 64,346,547

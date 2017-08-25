@@ -7,7 +7,7 @@
 #include <ESP8266WebServer.h>
 // Replace with your network credentials
 #define WIFISSID "brriset"
-#define WIFIPASS "password"
+#define WIFIPASS "secret"
 
 #include "DHT.h"
 #define DHTPIN 2 /* wemos DHT11 shield */
@@ -18,7 +18,7 @@
 DHT dht(DHTPIN, DHTTYPE);
 unsigned long startTime = millis();
 
-const char* host="167.205.24.34";
+const char* host="167.205.4.34";
 const int port=80;
 
 const int watchdog = 20000; // delay before pushing data

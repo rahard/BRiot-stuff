@@ -1,6 +1,6 @@
 #include "DHT.h"
 
-#define ESPECTRO
+// #define ESPECTRO
 
 #ifdef ESPECTRO
 #include <ESPectro.h>
