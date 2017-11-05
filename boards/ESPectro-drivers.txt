@@ -1,0 +1,7 @@
+This is drivers for ESPectro board v.3
+
+driver:
+   https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers
+
+library: 
+   https://github.com/andriyadi/EspX
