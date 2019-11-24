@@ -24,8 +24,11 @@ Notes:
   as your bluetooth port; check with platformio device list)
 
 platformio run -t upload --upload-port /dev/cu.Bluino-ONE20-DevB
+or
+pio run -t upload --upload-port /dev/cu.Bluino-ONE20-DevB
 
-=
+= old platformio has "lib_install" in platformio.ini
+  but it has changed
 
 Enjoy ...
 
