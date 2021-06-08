@@ -1,7 +1,8 @@
 /* blinking LED for NodeMCU
    Budi Rahardjo @rahard
 */
-#define LED_BUILTIN 13
+
+#define LED_BUILTIN 33
 
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);

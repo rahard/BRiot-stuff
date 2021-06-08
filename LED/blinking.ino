@@ -1,6 +1,9 @@
-/* blinking LED for NodeMCU
+/* blinking LED for various boards
    Budi Rahardjo @rahard
 */
+
+/* for WeMOS do not define LED_BUILTIN. comment the line */
+/* for AI Thinker ESP32 it's 33 */
 #define LED_BUILTIN D0
 
 void setup() {
