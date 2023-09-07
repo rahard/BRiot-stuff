@@ -1,11 +1,11 @@
 #include "DHT.h"
 
-#define ESPECTRO
+//#define ESPECTRO
 
-#ifdef ESPECTRO
-#include <ESPectro.h>
-ESPectro board(ESPectro_V3);
-#endif
+// #ifdef ESPECTRO
+// #include <ESPectro.h>
+// ESPectro board(ESPectro_V3);
+// #endif
 
 #define DHTPIN 2     // what digital pin we're connected to
 // #define DHTTYPE DHT11   // DHT 11
@@ -18,9 +18,9 @@ ESPectro board(ESPectro_V3);
 DHT dht(DHTPIN, DHTTYPE);
 
 void setup() {
-#ifdef ESPECTRO
-  board.turnOffAllNeopixel();
-#endif
+// #ifdef ESPECTRO
+//   board.turnOffAllNeopixel();
+// #endif
 
   Serial.begin(9600);
   Serial.println("DHTxx test!");
