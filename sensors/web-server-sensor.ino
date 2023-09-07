@@ -2,12 +2,12 @@
 @rahard
 */
 
-#define ESPECTRO
+// #define ESPECTRO
 
-#ifdef ESPECTRO
-#include <ESPectro.h>
-ESPectro board(ESPectro_V3);
-#endif
+// #ifdef ESPECTRO
+// #include <ESPectro.h>
+// ESPectro board(ESPectro_V3);
+// #endif
 
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
@@ -55,9 +55,9 @@ void connectWifi() {
 }
 
 void setup(void){  
-#ifdef ESPECTRO
-   board.turnOffAllNeopixel();
-#endif
+// #ifdef ESPECTRO
+//    board.turnOffAllNeopixel();
+// #endif
   Serial.begin(9600);
   dht.begin(); /* start sensor */
   delay(1000);
