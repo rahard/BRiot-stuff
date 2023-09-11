@@ -9,6 +9,8 @@ button: directory for button stuff
 The C directory is a collection of codes in C language,
 as scratchpads (for testing ideas).
 
+The Espectro directory is a collection of examples for Espectro board.
+
 The MQTT directory is for MQTT with IoT.
 I use DycodeX Espectro dev board (which is EPS8266-based).
 
