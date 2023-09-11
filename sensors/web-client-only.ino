@@ -7,7 +7,7 @@
 #include <ESP8266WebServer.h>
 // Replace with your network credentials
 #define WIFISSID "sbm-iot"
-#define WIFIPASS "kelasiot"
+#define WIFIPASS "secret"
 
 
 // do not touch below
