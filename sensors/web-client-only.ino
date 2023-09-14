@@ -65,7 +65,7 @@ void loop(void){
       }
 
 
-      String url="Budi Rahardjo was here";
+      String url="/Budi Rahardjo was here";
       url += "\n";
 
       // send it
