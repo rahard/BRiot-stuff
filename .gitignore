@@ -1,3 +1,4 @@
 #ignor PIOs
 LED/.pio/
 sensors/.pio/
+.~lock*
