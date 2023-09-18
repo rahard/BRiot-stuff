@@ -1,4 +1,3 @@
-
 import paho.mqtt.client as paho
 
 def on_connect(client, userdata, flags, rc):
