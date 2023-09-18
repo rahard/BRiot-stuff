@@ -11,6 +11,6 @@ client = paho.Client()
 client.on_connect = on_connect
 client.on_message = on_message
 
-client.connect("mqtt.luqmanr.xyz", 1883, 60)
+client.connect("domain.example.com", 1883, 60)
 
 client.loop_forever()
