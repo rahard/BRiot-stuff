@@ -8,33 +8,48 @@ from bubbles.particle import Particle
 from bubbles.particle_effect import ParticleEffect
 from bubbles.renderers.image_effect_renderer import ImageEffectRenderer
 
-EXAMPLE_FILE = "fireball"
-EXAMPLE_DIR = "examples"
-IMG_DIR = f"out/{EXAMPLE_FILE}"
+import paho.mqtt.client as paho
 
-r = ImageEffectRenderer()
+def on_connect(client, userdata, flags, rc):
+	print("Connected with result code "+str(rc))
+	client.subscribe("inTopic")
 
-# load example json
-with open(f"{EXAMPLE_DIR}/{EXAMPLE_FILE}.json") as f:
-    import json
-    pe = json.load(f)
-particle_effect = ParticleEffect.load_from_dict(pe)
+def on_message(client, userdata, msg):
+    print(f'topic: {msg.topic} - msg: {msg.payload.decode()}')
+    example_file = msg.payload.decode()
+    example_dir = "examples"
+    IMG_DIR = f"out/{example_file}"
 
-# align the effect in the frame
-particle_effect.set_pos(60, 128)
+    r = ImageEffectRenderer()
 
-r.register_effect(particle_effect)
+    # load example json
+    with open(f"{example_dir}/{example_file}.json") as f:
+        import json
+        pe = json.load(f)
+    particle_effect = ParticleEffect.load_from_dict(pe)
 
-Path(IMG_DIR).mkdir(parents=True, exist_ok=True)
+    # align the effect in the frame
+    particle_effect.set_pos(60, 128)
+
+    r.register_effect(particle_effect)
+
+    Path(IMG_DIR).mkdir(parents=True, exist_ok=True)
+    for i in range(240):
+        particle_effect.update()
+        if i > 0:
+            image = Image.new("RGB", (128, 128), (0, 0, 0, 255))
+            r.render_effect(particle_effect,  image)
+
+            # image.save(f"{IMG_DIR}/{str(i)}.png")
+            image = image.resize((512,512))
+            st.image(image)
+            time.sleep(0.01)
+
+client = paho.Client()
+client.on_connect = on_connect
+client.on_message = on_message
+
+client.connect("mqtt.luqmanr.xyz", 1883, 60)
+
 with st.empty():
-    while True:
-        for i in range(240):
-            particle_effect.update()
-            if i > 0:
-                image = Image.new("RGB", (128, 128), (0, 0, 0, 255))
-                r.render_effect(particle_effect,  image)
-
-                # image.save(f"{IMG_DIR}/{str(i)}.png")
-                image = image.resize((512,512))
-                st.image(image)
-                time.sleep(0.01)
+    client.loop_forever()
