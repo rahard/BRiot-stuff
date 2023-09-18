@@ -14,8 +14,5 @@ client.on_message = on_message
 
 client.connect("example.domain.com", 1883, 60)
 
-# loop baca komentar
-for i in range(10):
-   #client.publish('inTopic', payload=None, qos=0, retain=False)
-   pesan = 'coba-coba ' + str(i)
-   client.publish('inTopic', pesan)
+pesan = input("masukkan pesan: ")
+client.publish('inTopic', pesan)
