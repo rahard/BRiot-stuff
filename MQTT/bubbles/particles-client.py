@@ -12,13 +12,17 @@ import paho.mqtt.client as paho
 
 def on_connect(client, userdata, flags, rc):
 	print("Connected with result code "+str(rc))
-	client.subscribe("inTopic")
+	client.subscribe("particles")
 
 def on_message(client, userdata, msg):
     print(f'topic: {msg.topic} - msg: {msg.payload.decode()}')
     example_file = msg.payload.decode()
     example_dir = "examples"
     IMG_DIR = f"out/{example_file}"
+
+    if example_file not in ["bubbles", "confetti", "explosion", "fireball", "hearts", "tornado"]:
+        st.write("particle type not recognized!")
+        return
 
     r = ImageEffectRenderer()
 
@@ -34,7 +38,7 @@ def on_message(client, userdata, msg):
     r.register_effect(particle_effect)
 
     Path(IMG_DIR).mkdir(parents=True, exist_ok=True)
-    for i in range(240):
+    for i in range(260):
         particle_effect.update()
         if i > 0:
             image = Image.new("RGB", (128, 128), (0, 0, 0, 255))
@@ -51,5 +55,6 @@ client.on_message = on_message
 
 client.connect("mqtt.luqmanr.xyz", 1883, 60)
 
+st.write(f'particle types: [bubbles, confetti, explosion, fireball, hearts, tornado]')
 with st.empty():
     client.loop_forever()
