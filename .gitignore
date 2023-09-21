@@ -1,4 +1,6 @@
 #ignor PIOs
-LED/.pio/
-sensors/.pio/
+*/.pio/
+.pio/
 .~lock*
+.vscode/
+*.swp

@@ -38,7 +38,6 @@ def shifting_colors(colors):
 		client.publish(f'color4', colors[3])
 		time.sleep(0.75)
 		colors = shift(colors, 1)
-		print(colors)
 
 client = paho.Client()
 client.on_connect = on_connect
@@ -48,4 +47,5 @@ client.connect("mqtt.luqmanr.xyz", 1883, 60)
 
 colors = ['red', 'green', 'blue', 'white']
 
-shifting_colors(colors)
+# shifting_colors(colors)
+synchronous_colors(colors)

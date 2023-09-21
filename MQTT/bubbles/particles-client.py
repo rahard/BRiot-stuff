@@ -21,7 +21,7 @@ def on_message(client, userdata, msg):
     IMG_DIR = f"out/{example_file}"
 
     if example_file not in ["bubbles", "confetti", "explosion", "fireball", "hearts", "tornado"]:
-        st.write("particle type not recognized!")
+        st.write(f"particle {example_file} not recognized!")
         return
 
     r = ImageEffectRenderer()
@@ -49,12 +49,14 @@ def on_message(client, userdata, msg):
             st.image(image)
             time.sleep(0.01)
 
-client = paho.Client()
-client.on_connect = on_connect
-client.on_message = on_message
+if __name__ == '__main__':
+    client = paho.Client()
+    client.on_connect = on_connect
+    client.on_message = on_message
 
-client.connect("mqtt.luqmanr.xyz", 1883, 60)
+    client.connect("mqtt.luqmanr.xyz", 1883, 60)
 
-st.write(f'particle types: [bubbles, confetti, explosion, fireball, hearts, tornado]')
-with st.empty():
-    client.loop_forever()
+    st.write(f'topic: particles')
+    st.write(f'particle messages (pick one): [ bubbles, confetti, explosion, fireball, hearts, tornado ]')
+    with st.empty():
+        client.loop_forever()
