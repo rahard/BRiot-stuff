@@ -64,7 +64,7 @@ void setup_wifi() {
 void callback(char* topic, byte* payload, unsigned int length) {
   Serial.print("Message arrived [");
   Serial.print(topic);
-  Serial.print("] ");
+  Serial.print("]: ");
   char messageBuffer[30];  //somewhere to put the message
   memcpy(messageBuffer, payload, length);  //copy in the payload
   messageBuffer[length] = '\0';
