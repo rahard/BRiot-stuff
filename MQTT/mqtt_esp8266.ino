@@ -68,7 +68,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
   char messageBuffer[30];  //somewhere to put the message
   memcpy(messageBuffer, payload, length);  //copy in the payload
   messageBuffer[length] = '\0';
-  Serial.println(String(messageBuffer);
+  Serial.println(String(messageBuffer));
 
   // Switch on the LED if an 1 was received as first character
   if (strcmp( messageBuffer, "hidup" ) == 0) {
