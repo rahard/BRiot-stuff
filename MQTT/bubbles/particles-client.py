@@ -33,6 +33,7 @@ def on_message(client, userdata, msg):
     particle_effect = ParticleEffect.load_from_dict(pe)
 
     # align the effect in the frame
+    # at x=0px, y=128px
     particle_effect.set_pos(0, 128)
 
     r.register_effect(particle_effect)
@@ -41,7 +42,9 @@ def on_message(client, userdata, msg):
     for i in range(260):
         particle_effect.update()
         if i > 0:
-            image = Image.new("RGB", (512, 128), (0, 0, 0, 255))
+            # (width, height)
+            img_size = (512, 128)
+            image = Image.new("RGB", img_size, (0, 0, 0, 255))
 
             # update particle position
             particle_effect.set_pos(0+(i*2), 128)
@@ -49,7 +52,11 @@ def on_message(client, userdata, msg):
             r.render_effect(particle_effect,  image)
 
             # image.save(f"{IMG_DIR}/{str(i)}.png")
-            image = image.resize((1024,256))
+
+            # scale image to new size
+            # original image * scale_factor
+            scale_factor = 4
+            image = image.resize((img_size[0]*scale_factor,img_size[1]*scale_factor))
             st.image(image)
             time.sleep(0.01)
 
