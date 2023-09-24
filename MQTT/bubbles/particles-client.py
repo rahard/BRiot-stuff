@@ -48,11 +48,6 @@ def on_message(client, userdata, msg):
 
             # change particle type halfway through
             if i == 130:
-                # with open(f"{example_dir}/fireball-blue.json") as f:
-                #     import json
-                #     pe = json.load(f)
-                # particle_effect = ParticleEffect.load_from_dict(pe)
-                # r.register_effect(particle_effect)
                 pe['emitters'][0]['particle_settings']['red'] = [55, 255]
                 pe['emitters'][0]['particle_settings']['blue'] = [255, 255]
                 particle_effect.update()
