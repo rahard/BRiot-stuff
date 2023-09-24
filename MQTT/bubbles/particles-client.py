@@ -46,13 +46,22 @@ def on_message(client, userdata, msg):
             img_size = (512, 128)
             image = Image.new("RGB", img_size, (0, 0, 0, 255))
 
+            # change particle type halfway through
+            if i == 130:
+                # with open(f"{example_dir}/fireball-blue.json") as f:
+                #     import json
+                #     pe = json.load(f)
+                # particle_effect = ParticleEffect.load_from_dict(pe)
+                # r.register_effect(particle_effect)
+                pe['emitters'][0]['particle_settings']['red'] = [55, 255]
+                pe['emitters'][0]['particle_settings']['blue'] = [255, 255]
+                particle_effect.update()
+
             # update particle position
             particle_effect.set_pos(0+(i*2), 128)
 
+            # render particle
             r.render_effect(particle_effect,  image)
-
-            # image.save(f"{IMG_DIR}/{str(i)}.png")
-
             # scale image to new size
             # original image * scale_factor
             scale_factor = 4
