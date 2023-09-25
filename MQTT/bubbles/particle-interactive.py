@@ -63,7 +63,9 @@ def render_particle():
     while True:
         # align the effect in the frame
         # at x=0px, y=128px
-        particle_effect.set_pos(PARTICLE_POSITION, 128)
+        if PARTICLE_POSITION >= 100:
+            PARTICLE_POSITION = 5
+        particle_effect.set_pos(PARTICLE_POSITION*13, 128)
         r.register_effect(particle_effect)
         # st.write(f'PARTICLE_TYPE: {PARTICLE_TYPE}')
         particle_effect.update()
@@ -79,7 +81,7 @@ def render_particle():
         scale_factor = 4
         image = image.resize((img_size[0]*scale_factor,img_size[1]*scale_factor))
         st.image(image)
-        time.sleep(0.01)
+        # time.sleep(0.01)
 
 if __name__ == '__main__':
     PARTICLE_TYPE = "fireball"
@@ -93,7 +95,8 @@ if __name__ == '__main__':
     # # call options
     # ultrasonic_mode()
 
-    st.write(f'particle messages (pick one): [ bubbles, confetti, explosion, fireball, hearts, tornado ]')
+    st.write(f'topic: `particles` -  messages (pick one): `[ bubbles, confetti, explosion, fireball, hearts, tornado ]`')
+    st.write(f'topic: `position` - messages (pick one): `[0-512]`')
     with st.empty():
         client.connect_async("mqtt.luqmanr.xyz", 1883, 60)
         client.loop_start()
