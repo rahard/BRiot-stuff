@@ -7,8 +7,8 @@ const char* ssid = "......";
 const char* password = ".......";
 const char* mqtt_server = "mqtt.broker.org";
 
-const int trigPin = 14;   
-const int echoPin = 12;   
+const int trigPin = 14; // D5 pin
+const int echoPin = 12; // D6 pin  
 long duration;  
 int distance;  
 
