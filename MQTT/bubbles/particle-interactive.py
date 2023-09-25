@@ -30,6 +30,8 @@ def on_message(client, userdata, msg):
     global PARTICLE_POSITION
     global PARTICLE_COLOR
     global particle_effect
+    global pe
+
     print(f'message:{msg.payload.decode()} - topic: {msg.topic}')
     if msg.topic == 'particles':
         PARTICLE_TYPE = msg.payload.decode()
@@ -42,13 +44,29 @@ def on_message(client, userdata, msg):
     elif msg.topic == 'color':
         PARTICLE_COLOR = msg.payload.decode()
     elif msg.topic == 'position':
-        PARTICLE_POSITION = int(msg.payload.decode())
+        if int(msg.payload.decode()) <= 30:
+            PARTICLE_POSITION = int(msg.payload.decode())
+            if PARTICLE_POSITION >= 0 and PARTICLE_POSITION <= 10:
+                pe['emitters'][0]['particle_settings']['red'] = [55, 255]
+                pe['emitters'][0]['particle_settings']['green'] = [55, 255]
+                pe['emitters'][0]['particle_settings']['blue'] = [255, 255]
+            elif PARTICLE_POSITION > 10 and PARTICLE_POSITION <= 20:
+                pe['emitters'][0]['particle_settings']['red'] = [55, 255]
+                pe['emitters'][0]['particle_settings']['green'] = [255, 255]
+                pe['emitters'][0]['particle_settings']['blue'] = [55, 255]
+            elif PARTICLE_POSITION > 20 and PARTICLE_POSITION <= 30:
+                pe['emitters'][0]['particle_settings']['red'] = [255, 255]
+                pe['emitters'][0]['particle_settings']['green'] = [55, 255]
+                pe['emitters'][0]['particle_settings']['blue'] = [55, 255]
+        else:
+            pass
 
 def render_particle():
     global PARTICLE_TYPE
     global PARTICLE_POSITION
     global PARTICLE_COLOR
     global particle_effect
+    global pe
 
     # render particle
     example_dir = "examples"
@@ -63,14 +81,11 @@ def render_particle():
     while True:
         # align the effect in the frame
         # at x=0px, y=128px
-        if PARTICLE_POSITION >= 100:
-            PARTICLE_POSITION = 5
-        particle_effect.set_pos(PARTICLE_POSITION*13, 128)
+        particle_effect.set_pos(PARTICLE_POSITION*12, 100)
         r.register_effect(particle_effect)
-        # st.write(f'PARTICLE_TYPE: {PARTICLE_TYPE}')
         particle_effect.update()
         # (width, height)
-        img_size = (512, 128)
+        img_size = (384, 96)
         image = Image.new("RGB", img_size, (0, 0, 0, 255))
 
         # render particle
@@ -78,8 +93,8 @@ def render_particle():
 
         # scale image to new size
         # original image * scale_factor
-        scale_factor = 4
-        image = image.resize((img_size[0]*scale_factor,img_size[1]*scale_factor))
+        scale_factor = 5
+        image = image.resize((img_size[0]*scale_factor, img_size[1]*scale_factor))
         st.image(image)
         # time.sleep(0.01)
 

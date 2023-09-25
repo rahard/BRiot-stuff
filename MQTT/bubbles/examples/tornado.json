@@ -17,9 +17,9 @@
 				"shape": "circle",
 				"colourise": true,
 				"opacity": [1, 0],
-				"red": 200,
-				"green": 200,
-				"blue": 200
+				"red": [200,255],
+				"green": [200,255],
+				"blue": [200,255]
 			},
 			"particle_variation": {
 				"lifetime": 30,

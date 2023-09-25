@@ -16,9 +16,9 @@
 				"shape": "square",
 				"rotation": 0,
 				"colourise": true,
-				"red": 150,
-				"green": 150,
-				"blue": 150
+				"red": [150, 255],
+				"green": [150,255],
+				"blue": [150,255]
 			},
 			"particle_variation": {
 				"lifetime": 30,
@@ -27,9 +27,9 @@
 				"y_speed": 0.5,
 				"scale": [0.2, 0],
 				"rotation": 270,
-				"red": 100,
-				"green": 100,
-				"blue": 100
+				"red": [100,255],
+				"green": [100,255],
+				"blue": [100,255]
 			}
 		}
 	]
