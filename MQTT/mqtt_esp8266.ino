@@ -3,9 +3,9 @@
 
 // Update these with values suitable for your network.
 
-const char* ssid = "sniffer2";
-const char* password = "kenapa tanya?";
-const char* mqtt_server = "mqtt.luqmanr.xyz";
+const char* ssid = "......";
+const char* password = ".......";
+const char* mqtt_server = "mqtt.broker.org";
 
 const int trigPin = 14;   
 const int echoPin = 12;   
