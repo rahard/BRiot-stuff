@@ -1,0 +1,17 @@
+version: "3.3"
+services:
+  server:
+    image: "eclipse-mosquitto:latest"
+    restart: unless-stopped
+    volumes:
+      - ./config:/mosquitto/config
+      - ./data:/mosquitto/data
+      - ./log:/mosquitto/log
+    ports:
+      - 1883:1883
+      - 9001:9001
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 128MB

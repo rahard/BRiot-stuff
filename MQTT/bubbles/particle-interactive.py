@@ -87,6 +87,8 @@ if __name__ == '__main__':
     PARTICLE_TYPE = "fireball"
     PARTICLE_POSITION = 0
     PARTICLE_COLOR = (255,255,255,255)
+    mqtt_host = "192.168.249.249"
+    mqtt_port = 1883
 
     client = paho.Client()
     client.on_connect = on_connect
@@ -95,9 +97,11 @@ if __name__ == '__main__':
     # # call options
     # ultrasonic_mode()
 
+    st.write(f'MQTT Host: `{mqtt_host}`')
+    st.write(f'MQTT Port: `{mqtt_port}`')
     st.write(f'topic: `particles` -  messages (pick one): `[ bubbles, confetti, explosion, fireball, hearts, tornado ]`')
     st.write(f'topic: `position` - messages (pick one): `[0-512]`')
     with st.empty():
-        client.connect_async("mqtt.luqmanr.xyz", 1883, 60)
+        client.connect_async(mqtt_host, mqtt_port, 60)
         client.loop_start()
         render_particle()
