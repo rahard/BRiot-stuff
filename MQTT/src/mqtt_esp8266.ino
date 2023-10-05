@@ -26,11 +26,16 @@
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 
+const int trigPin = 14;   
+const int echoPin = 12;   
+long duration;  
+int distance;  
+
 // Update these with values suitable for your network.
 
-const char* ssid = "SSID";
-const char* password = "PASS";
-const char* mqtt_server = "192.168.10.114";
+const char* ssid = "ssid";
+const char* password = "ssid-pass";
+const char* mqtt_server = "mqtt.server.net";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -111,6 +116,9 @@ void setup() {
   setup_wifi();
   client.setServer(mqtt_server, 1883);
   client.setCallback(callback);
+  
+   pinMode(trigPin, OUTPUT); 
+   pinMode(echoPin, INPUT); 
 }
 
 void loop() {
@@ -121,12 +129,31 @@ void loop() {
   client.loop();
 
   long now = millis();
-  if (now - lastMsg > 2000) {
+  if (now - lastMsg > 100) {
+
+    
+   digitalWrite(trigPin, LOW);  
+   delayMicroseconds(2);  
+   // Sets the trigPin on HIGH state for 10 micro seconds  
+   digitalWrite(trigPin, HIGH);  
+   delayMicroseconds(10);  
+   digitalWrite(trigPin, LOW);  
+
+   // Reads the echoPin, returns the sound wave travel time in microseconds  
+   duration = pulseIn(echoPin, HIGH);  
+   // Calculating the distance  
+   distance = duration*0.034/2;  
+
+  //  client.publish("position", String(distance));
+
     lastMsg = now;
-    ++value;
-    snprintf (msg, 75, "hello world #%ld", value);
+    // ++value;
+    snprintf (msg, 75, "%ld", distance);
     Serial.print("Publish message: ");
     Serial.println(msg);
-    client.publish("outTopic", msg);
+    // client.publish("outTopic", msg);
+
+    
+    client.publish("position", msg);
   }
 }
