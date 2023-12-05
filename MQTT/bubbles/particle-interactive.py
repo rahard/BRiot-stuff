@@ -1,17 +1,20 @@
 import time
 import streamlit as st
 import paho.mqtt.client as paho
-# from multiprocessing import Process
 import threading
-from streamlit.runtime.scriptrunner import add_script_run_ctx
+import uuid
 
+from streamlit.runtime.scriptrunner import add_script_run_ctx
 from PIL import Image
 from pathlib import Path
+
+import config
 
 from bubbles.emitter import Emitter
 from bubbles.particle import Particle
 from bubbles.particle_effect import ParticleEffect
 from bubbles.renderers.image_effect_renderer import ImageEffectRenderer
+
 
 def ultrasonic_mode():
     st.session_state["mode"] = st.selectbox(
@@ -102,15 +105,14 @@ if __name__ == '__main__':
     PARTICLE_TYPE = "fireball"
     PARTICLE_POSITION = 0
     PARTICLE_COLOR = (255,255,255,255)
-    mqtt_host = "192.168.249.249"
-    mqtt_port = 1883
+    mqtt_host = config.MQTT_SERVER
+    mqtt_port = config.MQTT_PORT
+    mqtt_client_id = config.MQTT_CLIENTID_PREFIX + str(uuid.uuid4()[:3])
 
-    client = paho.Client()
+    client = paho.Client(mqtt_client_id)
     client.on_connect = on_connect
     client.on_message = on_message
-
-    # # call options
-    # ultrasonic_mode()
+    client.username_pw_set(config.MQTT_USER, config.MQTT_PASSWORD)
 
     st.write(f'MQTT Host: `{mqtt_host}`')
     st.write(f'MQTT Port: `{mqtt_port}`')
