@@ -1,3 +1,7 @@
+/*
+copy this file to `Config.h`, modify it to suite your needs, and build/upload
+*/
+
 // ESP
 #define BAUD_RATE 115200
 
