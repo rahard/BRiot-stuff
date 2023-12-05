@@ -1,0 +1,18 @@
+// ESP
+#define BAUD_RATE 115200
+
+// WiFi
+#define WIFI_SSID "ssid"
+#define WIFI_PASSWORD "password"
+
+// MQTT
+#define MQTT_SERVER "test.mosquitto.org"
+#define MQTT_USER ""
+#define MQTT_PASSWORD ""
+#define PUB_TOPIC "pubTopic"
+#define SUB_TOPIC "subTopic"
+#define CLIENTID_PREFIX "ESP8266-"
+
+// Ultrasonic Sensor
+#define ECHO_PIN 12
+#define TRIG_PIN 14
