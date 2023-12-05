@@ -1,3 +1,7 @@
+"""
+usage:
+copy this file to `config.py` before running the server
+"""
 MQTT_SERVER = "test.mosquitto.org"
 MQTT_PORT = 1883
 MQTT_CLIENTID_PREFIX = "STREAMLIT-Client-"
