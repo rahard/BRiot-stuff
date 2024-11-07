@@ -113,7 +113,7 @@ void loop() {
     long duration;  
     long distance;
     long now = millis();
-    if (now - lastMsgTs > 100) {
+    if (now - lastMsgTs > 200) {
       
         digitalWrite(trigPin, LOW);  
         delayMicroseconds(2);  
@@ -128,11 +128,12 @@ void loop() {
         distance = duration*0.034/2;  
 
         ++iteration;
-        lastMsgTs = now;
         char pubMsg[100];
         snprintf(pubMsg, 100, "distance: %ld - interation: %d", distance, iteration);
         Serial.print("Publish message:");
         Serial.println(pubMsg);
-        client.publish(pubTopic, pubMsg);
+        client.publish(pubTopic, String(distance).c_str());
+        client.publish("particles", "fireball");
+        lastMsgTs = now;
     }
 }
