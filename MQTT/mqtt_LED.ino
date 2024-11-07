@@ -1,23 +1,19 @@
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
-#include <Config.h>
+// #include <Config.h>
 
 // Initialize WiFi Config
-const char* ssid = WIFI_SSID;
-const char* password = WIFI_PASSWORD;
+const char* ssid = "WIFI_SSID";
+const char* password = "WIFI_password";
 WiFiClient espClient;
 
-// Initialize Ultrasonic Sensor Config
-const int trigPin = TRIG_PIN;   
-const int echoPin = ECHO_PIN;   
-
 // Initialize MQTT Config
-const char* mqttServer = MQTT_SERVER;
-const char* mqttUser = MQTT_USER;
-const char* mqttPass = MQTT_PASSWORD;
-const char* subTopic = SUB_TOPIC;
-const char* pubTopic = PUB_TOPIC;
-String clientId = CLIENTID_PREFIX;
+const char* mqttServer = "192.168.7.130";
+const char* mqttUser = "";
+const char* mqttPass = "";
+const char* subTopic = "LED";
+const char* pubTopic = "LED";
+String clientId = "MYID-";
 PubSubClient client(espClient);
 
 // Define used variables
@@ -49,7 +45,7 @@ void setup_wifi() {
 }
 
 void callback(char* topic, byte* payload, unsigned int length) {
-    char messageBuffer[length+1];                       // somewhere to put the message
+    char messageBuffer[length+1];
     snprintf(messageBuffer, length+1, "%s", payload);
     Serial.print("Message arrived: [ ");
     Serial.print(messageBuffer);
@@ -58,11 +54,9 @@ void callback(char* topic, byte* payload, unsigned int length) {
     // Switch on the LED if payload==on
     // and Switch off if payload==off
     if (strcmp( messageBuffer, "on" ) == 0) {
-        digitalWrite(LED_BUILTIN, LOW);     // Turn the LED on (Note that LOW is the voltage level
-                                            // but actually the LED is on; this is because
-                                            // it is acive low on the ESP-01)
+        digitalWrite(LED_BUILTIN, LOW);     
     } else if (strcmp( messageBuffer, "off" ) == 0) {
-        digitalWrite(LED_BUILTIN, HIGH);  // Turn the LED off by making the voltage HIGH
+        digitalWrite(LED_BUILTIN, HIGH);  
     }
 }
 
@@ -95,13 +89,11 @@ void reconnect() {
 
 void setup() {
     pinMode(LED_BUILTIN, OUTPUT);     // Initialize the LED_BUILTIN pin as an output
-    Serial.begin(BAUD_RATE);
+    Serial.begin(9600);
     setup_wifi();
     client.setServer(mqttServer, 1883);
     client.setCallback(callback);
     
-    pinMode(trigPin, OUTPUT); 
-    pinMode(echoPin, INPUT); 
 }
 
 void loop() {
@@ -109,30 +101,4 @@ void loop() {
         reconnect();
     }
     client.loop();
-
-    long duration;  
-    long distance;
-    long now = millis();
-    if (now - lastMsgTs > 100) {
-      
-        digitalWrite(trigPin, LOW);  
-        delayMicroseconds(2);  
-        // Sets the trigPin on HIGH state for 10 micro seconds  
-        digitalWrite(trigPin, HIGH);  
-        delayMicroseconds(10);  
-        digitalWrite(trigPin, LOW);  
-
-        // Reads the echoPin, returns the sound wave travel time in microseconds  
-        duration = pulseIn(echoPin, HIGH);  
-        // Calculate the distance  
-        distance = duration*0.034/2;  
-
-        ++iteration;
-        lastMsgTs = now;
-        char pubMsg[100];
-        snprintf(pubMsg, 100, "distance: %ld - interation: %d", distance, iteration);
-        Serial.print("Publish message:");
-        Serial.println(pubMsg);
-        client.publish(pubTopic, pubMsg);
-    }
 }
