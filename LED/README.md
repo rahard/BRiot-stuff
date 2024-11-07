@@ -7,6 +7,7 @@ The only thing that we have to consider is the pin arrangement.
 Default LED pins:
 Arduino UNO:
 Wemos D1 (NodeMCU): D2
+ESP32 WROOM: 2
 Espectro: could be 2 or 3 depends on the jumper
 
 =-=-=-=-=

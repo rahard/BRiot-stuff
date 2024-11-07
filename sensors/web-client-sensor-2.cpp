@@ -1,27 +1,32 @@
 /* Sensor web server 
-@rahard
+2024 @rahard
 */
 
 #include <ESP8266WiFi.h>
+#include <ESP8266HTTPClient.h>
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
-// Replace with your network credentials
-#define WIFISSID "SSID"
-#define WIFIPASS "password
 
 #include "DHT.h"
 #define DHTPIN 2 /* wemos DHT11 shield */
-#define DHTTYPE DHT11 
+#define DHTTYPE DHT22
 
+// Replace with your network credentials
+#define WIFISSID "wifiSSID"
+#define WIFIPASS "wifipass"
+
+const char* deviceid="ID=yourDEVICEID";
+const char* groupid="GROUP=yourGROUP";
+// server to receive the data
+const char* host="the.server";
+const int port=80;
 
 // do not touch below
 DHT dht(DHTPIN, DHTTYPE);
 unsigned long startTime = millis();
 
-const char* host="10.20.10.34";
-const int port=80;
 
-const int watchdog = 20000; // delay before pushing data
+const int watchdog = 10000; // delay before pushing data
 unsigned long previousMillis = millis();
 
 void connectWifi() {
@@ -64,12 +69,13 @@ void loop(void){
 
 
       WiFiClient client;
+      HTTPClient http;
 
-      if (!client.connect(host,port)) {
-         Serial.print("cannot connect to web server ");
-         Serial.println(host);
-         return;
-      }
+    //   if (!client.connect(host,port)) {
+    //      Serial.print("cannot connect to web server ");
+    //      Serial.println(host);
+    //      return;
+    //   }
 
       // get data from sensor
       float t = dht.readTemperature();     // celcius
@@ -80,38 +86,44 @@ void loop(void){
          return;
       }
 
-      String url="/weather/poller.php?";
-      url += "ID=BRPAUME1";
-      url += "&tempf=";
-      url += String(f);
+      //String url="/weather/poller.php?";
+      String url = "http://";
+      url += host;
+      url += ":";
+      url += port;
+      url += "/?";
+      //url += "ID=YOURID";
+      url += deviceid;
+      url += "&";
+      url += groupid;
+      url += "&temperature=";
+      url += String(t);
       url += "&humidity=";
       url += String(h);
-      url += "&softwaretype=BRIotv1";
-      url += "&action=updateraw";
-      url += "&realtime=1&rtfreq=5";
+      url += "&softwaretype=BRIotv2";
       //url += WiFi.localIP().toString();
       //url += "&time=";
       //url += String(millis());
 
       // send it
-      client.print(String("GET ") + url + " HTTP/1.1\r\n" +
-         "Host: " + host + "\r\n" +
-         "Connection: close\r\n\r\n");
 
-      // wait for respond
-      unsigned long timeout = millis();
-      while (client.available() == 0) {
-         if (millis() - timeout > 5000) {
-            Serial.print("timeout");
-            client.stop();
-            return;
-         }
+      Serial.println(url);
+
+      http.begin(client, url);
+      int httpResponseCode = http.GET();
+
+      String payload = "{}";
+
+      if (httpResponseCode > 0) {
+        Serial.print("Http resp code:");
+        Serial.println(httpResponseCode);
+        payload = http.getString();
+      } 
+      else {
+        Serial.print("err code:");
+        Serial.println(httpResponseCode);
       }
 
-      // ok, we got the reply
-      while (client.available()) {
-         String line = client.readStringUntil('\r');
-         Serial.print(line);
-      }
+      http.end();
    }
 }

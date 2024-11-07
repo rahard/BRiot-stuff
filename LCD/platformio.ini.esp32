@@ -8,12 +8,14 @@
 ; Please visit documentation for the other options and examples
 ; https://docs.platformio.org/page/projectconf.html
 
-[env:esp12e]
-platform = espressif8266
+[env:esp32]
+platform = espressif32
+board = esp32dev
 framework = arduino
-board = esp12e
+#upload_port = /dev/cu.usbserial-0001
+#upload_port = /dev/cu.usbserial-210
+upload_port = /dev/cu.usbserial-0001
 upload_speed = 460400
-#monitor_speed = 115200
-lib_deps = 
-	sstaub/Ticker@^4.4.0
-	knolleary/PubSubClient@^2.8.0
+#upload_speed = 9600
+lib_deps = adafruit/Adafruit GFX Library@^1.11.9
+	adafruit/Adafruit SSD1306@^2.5.10

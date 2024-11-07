@@ -18,7 +18,7 @@
 DHT dht(DHTPIN, DHTTYPE);
 unsigned long startTime = millis();
 
-const char* host="192.168.4.29";
+const char* host="192.168.1.1";
 const int port=8008;
 const int watchdog = 5000; // delay before pushing data
 unsigned long previousMillis = millis();

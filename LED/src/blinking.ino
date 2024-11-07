@@ -1,8 +1,9 @@
-/* blinking LED for NodeMCU
+/* blinking LED 
    Budi Rahardjo @rahard
+   updated 2024
 */
 
-//#define LED_BUILTIN 33
+#define LED_BUILTIN 2
 
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
@@ -10,7 +11,7 @@ void setup() {
 
 void loop() {
   digitalWrite(LED_BUILTIN, HIGH);
-  delay(100);
+  delay(500);
   digitalWrite(LED_BUILTIN, LOW);
-  delay(100);
+  delay(500);
 }
