@@ -1,0 +1,18 @@
+// ESP
+#define BAUD_RATE 115200
+
+// WiFi
+#define WIFI_SSID "WIFI"
+#define WIFI_PASSWORD "PASS"
+
+// MQTT
+#define MQTT_SERVER "mqtt.org"
+#define MQTT_USER "user"
+#define MQTT_PASSWORD "pass"
+#define PUB_TOPIC "pubTopic"
+#define SUB_TOPIC "subTopic"
+#define CLIENTID_PREFIX "398fjse9f8js8df"
+
+// Ultrasonic Sensor
+#define ECHO_PIN 12 // D6
+#define TRIG_PIN 14 // D5
