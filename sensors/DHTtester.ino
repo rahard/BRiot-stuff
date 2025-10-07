@@ -7,7 +7,8 @@
 // ESPectro board(ESPectro_V3);
 // #endif
 
-#define DHTPIN 2     // what digital pin we're connected to
+#define DHTPIN 4     // D2 on NodeMCU boards
+// seringkali masalah kalau menggunakn pin2 (D4) 
 // #define DHTTYPE DHT11   // DHT 11
 #define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321
 
