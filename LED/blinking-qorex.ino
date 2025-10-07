@@ -3,7 +3,8 @@
    updated 2024
 */
 
-#define LED_BUILTIN 2
+//#define LED_BUILTIN 14
+#define LED_BUILTIN 18
 
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);

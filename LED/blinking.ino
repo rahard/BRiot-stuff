@@ -4,7 +4,7 @@
 
 /* for WeMOS do not define LED_BUILTIN. comment the line */
 /* for AI Thinker ESP32 it's 33 */
-#define LED_BUILTIN D0
+#define LED_BUILTIN 14
 
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
